@@ -1,0 +1,60 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Upload Excel File API",
+    "version": "1.0.0",
+    "description": "API documentation for uploading ERP Excel files"
+  },
+  "paths": {
+    "/upload_erp_excel": {
+      "post": {
+        "summary": "Upload ERP Excel File",
+        "description": "Endpoint to upload an ERP Excel file.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The Excel file to be uploaded.",
+                    "content": {
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {}
+    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "message": "File uploaded successfully"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "message": "An error occurred"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
